@@ -1,160 +1,176 @@
 /* =========================================
-   NEBULA — MAIN ENGINE
+   NEBULA — OPTIMIZED ENGINE
 ========================================= */
 
 
 /* =========================================
-   LOADING SCREEN
+   INSTANT START
 ========================================= */
 
-const loader = document.getElementById("loader");
-const progress = document.getElementById("progress");
-const percent = document.getElementById("percent");
+window.addEventListener("load", () => {
+  const loader = document.getElementById("loader");
 
-let loading = 0;
-
-const loadingInterval = setInterval(() => {
-
-  loading += Math.floor(Math.random() * 8) + 2;
-
-  if (loading >= 100) {
-    loading = 100;
-    clearInterval(loadingInterval);
-
-    setTimeout(() => {
-      loader.classList.add("hidden");
-    }, 500);
+  if (loader) {
+    loader.classList.add("hidden");
   }
-
-  progress.style.width = `${loading}%`;
-  percent.textContent = `${loading}%`;
-
-}, 100);
+});
 
 
 /* =========================================
-   STAR FIELD
+   STAR FIELD — LIGHTWEIGHT
 ========================================= */
 
 const canvas = document.getElementById("space");
-const ctx = canvas.getContext("2d");
+const ctx = canvas.getContext("2d", {
+  alpha: true
+});
 
 let stars = [];
-let mouse = {
+
+const mouse = {
   x: window.innerWidth / 2,
   y: window.innerHeight / 2
 };
 
 function resizeCanvas() {
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+  canvas.width = window.innerWidth * dpr;
+  canvas.height = window.innerHeight * dpr;
+
+  canvas.style.width = window.innerWidth + "px";
+  canvas.style.height = window.innerHeight + "px";
+
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
   createStars();
 }
+
 
 function createStars() {
 
   stars = [];
 
+  // Ít sao hơn để giảm tải CPU
   const amount =
-    Math.min(
-      900,
-      Math.floor(
-        window.innerWidth *
-        window.innerHeight /
-        2200
-      )
-    );
+    window.innerWidth < 700 ? 180 : 350;
 
   for (let i = 0; i < amount; i++) {
 
     stars.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
 
-      radius:
-        Math.random() * 1.4 + .2,
+      size: Math.random() * 1.2 + 0.2,
 
-      speed:
-        Math.random() * .25 + .05,
+      speed: Math.random() * 0.18 + 0.03,
 
-      opacity:
-        Math.random() * .8 + .2,
+      alpha: Math.random() * 0.7 + 0.2,
 
-      depth:
-        Math.random() * 2 + .5
+      depth: Math.random()
     });
   }
 }
+
 
 function drawStars() {
 
   ctx.clearRect(
     0,
     0,
-    canvas.width,
-    canvas.height
+    window.innerWidth,
+    window.innerHeight
   );
 
-  stars.forEach(star => {
+  for (const star of stars) {
 
     star.y -= star.speed;
 
-    if (star.y < 0) {
-      star.y = canvas.height;
-      star.x = Math.random() * canvas.width;
+    if (star.y < -5) {
+      star.y = window.innerHeight + 5;
+      star.x = Math.random() * window.innerWidth;
     }
 
-    const offsetX =
-      (mouse.x - canvas.width / 2)
-      * .0005
+    const moveX =
+      (mouse.x - window.innerWidth / 2)
+      * 0.002
       * star.depth;
 
-    const offsetY =
-      (mouse.y - canvas.height / 2)
-      * .0005
+    const moveY =
+      (mouse.y - window.innerHeight / 2)
+      * 0.002
       * star.depth;
 
     ctx.beginPath();
 
     ctx.arc(
-      star.x + offsetX,
-      star.y + offsetY,
-      star.radius,
+      star.x + moveX,
+      star.y + moveY,
+      star.size,
       0,
       Math.PI * 2
     );
 
     ctx.fillStyle =
-      `rgba(255,255,255,${star.opacity})`;
+      `rgba(255,255,255,${star.alpha})`;
 
     ctx.fill();
-  });
+  }
 
   requestAnimationFrame(drawStars);
 }
 
-window.addEventListener("resize", resizeCanvas);
 
 resizeCanvas();
 drawStars();
 
 
+let resizeTimer;
+
+window.addEventListener("resize", () => {
+
+  clearTimeout(resizeTimer);
+
+  resizeTimer = setTimeout(() => {
+    resizeCanvas();
+  }, 150);
+
+});
+
+
 /* =========================================
-   CURSOR GLOW
+   MOUSE GLOW
 ========================================= */
 
-const glow = document.querySelector(".cursor-glow");
+const glow =
+  document.querySelector(".cursor-glow");
 
-document.addEventListener("mousemove", event => {
+let glowX = mouse.x;
+let glowY = mouse.y;
 
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
+document.addEventListener("mousemove", e => {
 
-  glow.style.left = `${event.clientX}px`;
-  glow.style.top = `${event.clientY}px`;
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+
 });
+
+
+function updateGlow() {
+
+  glowX += (mouse.x - glowX) * 0.12;
+  glowY += (mouse.y - glowY) * 0.12;
+
+  if (glow) {
+    glow.style.left = glowX + "px";
+    glow.style.top = glowY + "px";
+  }
+
+  requestAnimationFrame(updateGlow);
+}
+
+updateGlow();
 
 
 /* =========================================
@@ -164,36 +180,41 @@ document.addEventListener("mousemove", event => {
 const navLinks =
   document.querySelectorAll("nav a");
 
-window.addEventListener("scroll", () => {
+const sections =
+  document.querySelectorAll("section[id]");
+
+
+function updateNavigation() {
 
   let current = "";
 
-  document
-    .querySelectorAll("section[id]")
-    .forEach(section => {
+  sections.forEach(section => {
 
-      const top =
-        section.offsetTop - 200;
+    const top =
+      section.offsetTop - 250;
 
-      if (scrollY >= top) {
-        current = section.id;
-      }
-    });
-
-  navLinks.forEach(link => {
-
-    link.classList.remove("active");
-
-    if (
-      link.getAttribute("href") ===
-      `#${current}`
-    ) {
-      link.classList.add("active");
+    if (window.scrollY >= top) {
+      current = section.id;
     }
 
   });
 
-});
+  navLinks.forEach(link => {
+
+    link.classList.toggle(
+      "active",
+      link.getAttribute("href") === `#${current}`
+    );
+
+  });
+
+}
+
+window.addEventListener(
+  "scroll",
+  updateNavigation,
+  { passive: true }
+);
 
 
 /* =========================================
@@ -203,15 +224,19 @@ window.addEventListener("scroll", () => {
 const exploreButton =
   document.getElementById("exploreButton");
 
-exploreButton.addEventListener("click", () => {
+if (exploreButton) {
 
-  document
-    .getElementById("explore")
-    .scrollIntoView({
-      behavior: "smooth"
-    });
+  exploreButton.addEventListener("click", () => {
 
-});
+    document
+      .getElementById("explore")
+      ?.scrollIntoView({
+        behavior: "smooth"
+      });
+
+  });
+
+}
 
 
 /* =========================================
@@ -227,36 +252,47 @@ const playButton =
 const experienceClose =
   document.getElementById("experienceClose");
 
-playButton.addEventListener("click", () => {
+if (playButton && experience) {
 
-  experience.classList.add("active");
+  playButton.addEventListener("click", () => {
 
-});
+    experience.classList.add("active");
 
-experienceClose.addEventListener("click", () => {
+  });
 
-  experience.classList.remove("active");
+}
 
-});
+if (experienceClose && experience) {
+
+  experienceClose.addEventListener("click", () => {
+
+    experience.classList.remove("active");
+
+  });
+
+}
 
 
 /* =========================================
    ENTER SPACE
 ========================================= */
 
-document
-  .getElementById("launchBtn")
-  .addEventListener("click", () => {
+const launchBtn =
+  document.getElementById("launchBtn");
 
-    document
-      .getElementById("experience")
-      .classList.add("active");
+if (launchBtn && experience) {
+
+  launchBtn.addEventListener("click", () => {
+
+    experience.classList.add("active");
 
   });
 
+}
+
 
 /* =========================================
-   WORLD DATA
+   PLANET DATA
 ========================================= */
 
 const worlds = {
@@ -265,7 +301,7 @@ const worlds = {
     type: "EXOPLANET",
     title: "KEPLER-186F",
     description:
-      "An Earth-sized exoplanet orbiting within the habitable zone of its star. It remains one of the most fascinating worlds discovered beyond our solar system.",
+      "An Earth-sized exoplanet orbiting within the habitable zone of its star. One of the most fascinating worlds discovered beyond our solar system.",
     distance: "500 LY",
     category: "TERRESTRIAL"
   },
@@ -274,7 +310,7 @@ const worlds = {
     type: "GAS GIANT",
     title: "JUPITER",
     description:
-      "The largest planet in our solar system. Its immense atmosphere contains powerful storms, including the famous Great Red Spot.",
+      "The largest planet in our solar system, surrounded by powerful storms and the famous Great Red Spot.",
     distance: "43 MIN",
     category: "GAS GIANT"
   },
@@ -283,7 +319,7 @@ const worlds = {
     type: "GAS GIANT",
     title: "SATURN",
     description:
-      "A spectacular gas giant surrounded by an enormous system of icy rings made from countless particles of ice and rock.",
+      "A spectacular gas giant surrounded by a huge system of icy rings made from countless particles of ice and rock.",
     distance: "80 MIN",
     category: "GAS GIANT"
   },
@@ -292,7 +328,7 @@ const worlds = {
     type: "TERRESTRIAL",
     title: "MARS",
     description:
-      "The red planet. Mars contains ancient valleys, enormous volcanoes and evidence that liquid water once flowed across its surface.",
+      "The red planet contains ancient valleys, enormous volcanoes and evidence that liquid water once flowed across its surface.",
     distance: "3–22 MIN",
     category: "ROCKY PLANET"
   }
@@ -325,34 +361,12 @@ const modalDistance =
 const modalCategory =
   document.getElementById("modalCategory");
 
-const modalPlanet =
-  document.getElementById("modalPlanet");
-
-
-document
-  .querySelectorAll(".world-button")
-  .forEach(button => {
-
-    button.addEventListener("click", event => {
-
-      const card =
-        event.target.closest(".world-card");
-
-      const worldName =
-        card.dataset.world;
-
-      openWorld(worldName);
-
-    });
-
-  });
-
 
 function openWorld(name) {
 
   const world = worlds[name];
 
-  if (!world) return;
+  if (!world || !modal) return;
 
   modalType.textContent =
     world.type;
@@ -374,33 +388,44 @@ function openWorld(name) {
 }
 
 
-modalClose.addEventListener("click", () => {
+document
+  .querySelectorAll(".world-button")
+  .forEach(button => {
 
-  modal.classList.remove("active");
+    button.addEventListener("click", e => {
 
-});
+      const card =
+        e.currentTarget.closest(".world-card");
+
+      if (!card) return;
+
+      openWorld(card.dataset.world);
+
+    });
+
+  });
 
 
-modal.addEventListener("click", event => {
+if (modalClose) {
 
-  if (event.target === modal) {
+  modalClose.addEventListener("click", () => {
     modal.classList.remove("active");
-  }
+  });
 
-});
+}
 
 
-document.addEventListener("keydown", event => {
+if (modal) {
 
-  if (event.key === "Escape") {
+  modal.addEventListener("click", e => {
 
-    modal.classList.remove("active");
+    if (e.target === modal) {
+      modal.classList.remove("active");
+    }
 
-    experience.classList.remove("active");
+  });
 
-  }
-
-});
+}
 
 
 /* =========================================
@@ -410,20 +435,34 @@ document.addEventListener("keydown", event => {
 const randomWorld =
   document.getElementById("randomWorld");
 
-const worldNames =
-  Object.keys(worlds);
+if (randomWorld) {
 
-randomWorld.addEventListener("click", () => {
+  randomWorld.addEventListener("click", () => {
 
-  const random =
-    worldNames[
-      Math.floor(
-        Math.random() *
-        worldNames.length
-      )
-    ];
+    const names =
+      Object.keys(worlds);
 
-  openWorld(random);
+    const random =
+      names[Math.floor(Math.random() * names.length)];
+
+    openWorld(random);
+
+  });
+
+}
+
+
+/* =========================================
+   ESC KEY
+========================================= */
+
+document.addEventListener("keydown", e => {
+
+  if (e.key !== "Escape") return;
+
+  modal?.classList.remove("active");
+
+  experience?.classList.remove("active");
 
 });
 
@@ -432,9 +471,12 @@ randomWorld.addEventListener("click", () => {
    BACK TO TOP
 ========================================= */
 
-document
-  .getElementById("backTop")
-  .addEventListener("click", () => {
+const backTop =
+  document.getElementById("backTop");
+
+if (backTop) {
+
+  backTop.addEventListener("click", () => {
 
     window.scrollTo({
       top: 0,
@@ -442,6 +484,8 @@ document
     });
 
   });
+
+}
 
 
 /* =========================================
@@ -454,116 +498,139 @@ const hamburger =
 const nav =
   document.querySelector("nav");
 
-hamburger.addEventListener("click", () => {
+if (hamburger && nav) {
 
-  if (nav.style.display === "flex") {
+  hamburger.addEventListener("click", () => {
 
-    nav.style.display = "";
+    nav.classList.toggle("mobile-open");
 
-  } else {
+  });
 
-    nav.style.display = "flex";
 
-    nav.style.position = "absolute";
+  navLinks.forEach(link => {
 
-    nav.style.top = "75px";
-    nav.style.left = "0";
-    nav.style.right = "0";
+    link.addEventListener("click", () => {
 
-    nav.style.padding = "25px";
+      nav.classList.remove("mobile-open");
 
-    nav.style.background =
-      "rgba(5,5,9,.95)";
+    });
 
-    nav.style.backdropFilter =
-      "blur(20px)";
+  });
 
-    nav.style.flexDirection =
-      "column";
-
-    nav.style.gap = "25px";
-
-  }
-
-});
+}
 
 
 /* =========================================
-   PARALLAX PLANET
+   PLANET PARALLAX
 ========================================= */
 
 const heroUniverse =
   document.querySelector(".hero-universe");
 
-document.addEventListener("mousemove", event => {
+let parallaxX = 0;
+let parallaxY = 0;
 
-  if (window.innerWidth < 800) return;
+document.addEventListener("mousemove", e => {
 
-  const x =
-    (event.clientX / window.innerWidth - .5);
+  if (
+    window.innerWidth < 800 ||
+    !heroUniverse
+  ) return;
 
-  const y =
-    (event.clientY / window.innerHeight - .5);
+  const targetX =
+    (e.clientX / window.innerWidth - 0.5) * 15;
 
-  heroUniverse.style.transform =
-    `translate(${x * 12}px, ${y * 12}px)`;
+  const targetY =
+    (e.clientY / window.innerHeight - 0.5) * 15;
+
+  parallaxX +=
+    (targetX - parallaxX) * 0.08;
+
+  parallaxY +=
+    (targetY - parallaxY) * 0.08;
 
 });
 
 
+function updateParallax() {
+
+  if (
+    heroUniverse &&
+    window.innerWidth >= 800
+  ) {
+
+    heroUniverse.style.transform =
+      `translate3d(
+        ${parallaxX}px,
+        ${parallaxY}px,
+        0
+      )`;
+
+  }
+
+  requestAnimationFrame(updateParallax);
+}
+
+updateParallax();
+
+
 /* =========================================
-   CARD 3D EFFECT
+   3D CARD EFFECT
 ========================================= */
 
-document
-  .querySelectorAll(".world-card")
-  .forEach(card => {
+if (window.innerWidth > 800) {
 
-    card.addEventListener(
-      "mousemove",
-      event => {
+  document
+    .querySelectorAll(".world-card")
+    .forEach(card => {
+
+      card.addEventListener("mousemove", e => {
 
         const rect =
           card.getBoundingClientRect();
 
         const x =
-          event.clientX - rect.left;
+          e.clientX - rect.left;
 
         const y =
-          event.clientY - rect.top;
+          e.clientY - rect.top;
 
         const rotateX =
-          ((y / rect.height) - .5) * -7;
+          ((y / rect.height) - 0.5) * -5;
 
         const rotateY =
-          ((x / rect.width) - .5) * 7;
+          ((x / rect.width) - 0.5) * 5;
 
         card.style.transform =
           `
           translateY(-8px)
-          perspective(800px)
+          perspective(700px)
           rotateX(${rotateX}deg)
           rotateY(${rotateY}deg)
           `;
-      }
-    );
+      });
 
 
-    card.addEventListener(
-      "mouseleave",
-      () => {
+      card.addEventListener("mouseleave", () => {
 
         card.style.transform = "";
 
-      }
-    );
+      });
 
-  });
+    });
+
+}
 
 
 /* =========================================
-   REVEAL ON SCROLL
+   SCROLL REVEAL
 ========================================= */
+
+const revealElements =
+  document.querySelectorAll(
+    ".section-top, .world-card, .mission, .about-copy, .about-visual"
+  );
+
 
 const revealObserver =
   new IntersectionObserver(
@@ -573,8 +640,10 @@ const revealObserver =
 
         if (entry.isIntersecting) {
 
-          entry.target.classList.add(
-            "revealed"
+          entry.target.classList.add("revealed");
+
+          revealObserver.unobserve(
+            entry.target
           );
 
         }
@@ -583,97 +652,102 @@ const revealObserver =
 
     },
     {
-      threshold: .12
+      threshold: 0.08
     }
   );
 
 
-document
-  .querySelectorAll(
-    ".section-top, .world-card, .mission, .about-copy, .about-visual"
-  )
-  .forEach(element => {
+revealElements.forEach(element => {
 
-    element.style.opacity = "0";
-    element.style.transform =
-      "translateY(40px)";
-    element.style.transition =
-      "opacity .9s ease, transform .9s ease";
+  element.classList.add("reveal-ready");
 
-    revealObserver.observe(element);
+  revealObserver.observe(element);
 
-  });
+});
 
 
 /* =========================================
-   REVEAL STYLE
+   DYNAMIC REVEAL CSS
 ========================================= */
 
-const revealStyle =
+const style =
   document.createElement("style");
 
-revealStyle.textContent = `
-  .revealed {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+style.textContent = `
+
+.reveal-ready {
+  opacity: 0;
+  transform: translateY(25px);
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+.reveal-ready.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 650px) {
+
+  nav.mobile-open {
+    display: flex !important;
+
+    position: absolute;
+
+    top: 75px;
+    left: 0;
+    right: 0;
+
+    padding: 25px;
+
+    background: rgba(5,5,9,.96);
+
+    backdrop-filter: blur(15px);
+
+    flex-direction: column;
+
+    gap: 25px;
+
+    border-bottom: 1px solid rgba(255,255,255,.1);
   }
+
+}
+
 `;
 
-document.head.appendChild(revealStyle);
+document.head.appendChild(style);
 
 
 /* =========================================
-   SMOOTH NAV CLOSE MOBILE
+   PERFORMANCE MODE
 ========================================= */
 
-navLinks.forEach(link => {
+// Giảm hiệu ứng nếu máy báo người dùng
+// muốn giảm chuyển động.
 
-  link.addEventListener("click", () => {
+if (
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches
+) {
 
-    if (window.innerWidth <= 650) {
-      nav.style.display = "";
-    }
+  document.documentElement.style
+    .scrollBehavior = "auto";
 
-  });
-
-});
+}
 
 
 /* =========================================
-   EXPERIENCE AUTO MESSAGE
+   DONE
 ========================================= */
-
-let experienceTimer;
-
-playButton.addEventListener("click", () => {
-
-  clearTimeout(experienceTimer);
-
-  experienceTimer =
-    setTimeout(() => {
-
-      const title =
-        document.querySelector(
-          ".experience-center h2"
-        );
-
-      title.innerHTML =
-        `
-        WELCOME TO
-        <em>THE UNKNOWN.</em>
-        `;
-
-    }, 3500);
-
-});
-
 
 console.log(
   "%cNEBULA",
-  "font-size:40px;font-weight:bold;"
+  "font-size:32px;font-weight:bold;"
 );
 
 console.log(
-  "%cBeyond the known.",
-  "font-size:15px;color:#8b5cf6;"
+  "%cOptimized mode activated.",
+  "font-size:13px;color:#8b5cf6;"
 );
