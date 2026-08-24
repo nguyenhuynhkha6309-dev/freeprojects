@@ -1,0 +1,1756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEBULA — Beyond The Known</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- LOADING -->
+  <div class="loader" id="loader">
+    <div class="loader-core"></div>
+    <div class="loader-text">INITIALIZING NEBULA</div>
+    <div class="loader-progress">
+      <span id="progress"></span>
+    </div>
+    <div class="loader-percent" id="percent">0%</div>
+  </div>
+
+
+  <!-- SPACE BACKGROUND -->
+  <canvas id="space"></canvas>
+
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+
+  <div class="cursor-glow"></div>
+
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+
+    <a href="#home" class="brand">
+      <span class="brand-orbit"></span>
+      NEBULA
+    </a>
+
+    <nav id="navLinks">
+      <a href="#home" class="active">HOME</a>
+      <a href="#explore">EXPLORE</a>
+      <a href="#missions">MISSIONS</a>
+      <a href="#about">ABOUT</a>
+    </nav>
+
+    <button class="nav-explore" id="launchBtn">
+      <span></span>
+      ENTER SPACE
+    </button>
+
+    <button class="hamburger" id="hamburger">
+      ☰
+    </button>
+
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="hero-copy">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          SYSTEM ONLINE
+        </div>
+
+        <p class="hero-kicker">
+          THE UNIVERSE IS BIGGER THAN YOU THINK
+        </p>
+
+        <h1>
+          BEYOND
+          <span>THE KNOWN.</span>
+        </h1>
+
+        <p class="hero-description">
+          Explore distant worlds, ancient stars and mysterious
+          galaxies through an interactive journey beyond the edge
+          of human imagination.
+        </p>
+
+        <div class="hero-actions">
+
+          <button class="primary-button" id="exploreButton">
+            BEGIN EXPLORATION
+            <span>↗</span>
+          </button>
+
+          <button class="play-button" id="playButton">
+            <span class="play-icon">▶</span>
+            WATCH EXPERIENCE
+          </button>
+
+        </div>
+
+        <div class="hero-data">
+
+          <div>
+            <strong>13.8B</strong>
+            <span>YEARS OLD</span>
+          </div>
+
+          <div>
+            <strong>2T+</strong>
+            <span>GALAXIES</span>
+          </div>
+
+          <div>
+            <strong>∞</strong>
+            <span>POSSIBILITIES</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PLANET -->
+      <div class="hero-universe">
+
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="orbit orbit-c"></div>
+
+        <div class="planet-shadow"></div>
+
+        <div class="planet">
+
+          <div class="planet-surface"></div>
+
+          <div class="planet-cloud cloud-one"></div>
+          <div class="planet-cloud cloud-two"></div>
+          <div class="planet-cloud cloud-three"></div>
+
+          <div class="planet-light"></div>
+
+        </div>
+
+        <div class="moon">
+          <div class="moon-surface"></div>
+        </div>
+
+        <div class="planet-label">
+          <span>EXOPLANET</span>
+          <strong>KEPLER-186F</strong>
+          <small>500 LIGHT YEARS AWAY</small>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator">
+        <span></span>
+        SCROLL TO EXPLORE
+      </div>
+
+    </section>
+
+
+    <!-- MARQUEE -->
+    <div class="space-marquee">
+
+      <div class="marquee-track">
+        <span>GALAXIES</span>
+        <i>✦</i>
+        <span>EXOPLANETS</span>
+        <i>✦</i>
+        <span>BLACK HOLES</span>
+        <i>✦</i>
+        <span>SUPERNOVAS</span>
+        <i>✦</i>
+        <span>NEBULAS</span>
+        <i>✦</i>
+
+        <span>GALAXIES</span>
+        <i>✦</i>
+        <span>EXOPLANETS</span>
+        <i>✦</i>
+        <span>BLACK HOLES</span>
+        <i>✦</i>
+        <span>SUPERNOVAS</span>
+        <i>✦</i>
+        <span>NEBULAS</span>
+      </div>
+
+    </div>
+
+
+    <!-- EXPLORE -->
+    <section class="explore section" id="explore">
+
+      <div class="section-top">
+
+        <div>
+          <span class="section-number">01 / DISCOVER</span>
+
+          <h2>
+            WORLDS
+            <em>UNKNOWN.</em>
+          </h2>
+        </div>
+
+        <p>
+          Our universe contains more worlds than humanity
+          could ever visit. Here are a few of the most
+          extraordinary.
+        </p>
+
+      </div>
+
+
+      <div class="planet-grid">
+
+        <article class="world-card active-world" data-world="kepler">
+
+          <div class="world-visual kepler">
+            <div class="mini-planet"></div>
+            <div class="mini-ring"></div>
+          </div>
+
+          <div class="world-info">
+            <span>EXOPLANET 01</span>
+            <h3>KEPLER-186F</h3>
+            <p>Potentially habitable world</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="jupiter">
+
+          <div class="world-visual jupiter">
+            <div class="mini-planet"></div>
+          </div>
+
+          <div class="world-info">
+            <span>GAS GIANT 02</span>
+            <h3>JUPITER</h3>
+            <p>The king of our solar system</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="saturn">
+
+          <div class="world-visual saturn">
+            <div class="mini-planet"></div>
+            <div class="saturn-ring"></div>
+          </div>
+
+          <div class="world-info">
+            <span>GAS GIANT 03</span>
+            <h3>SATURN</h3>
+            <p>World of magnificent rings</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="mars">
+
+          <div class="world-visual mars">
+            <div class="mini-planet"></div>
+          </div>
+
+          <div class="world-info">
+            <span>TERRESTRIAL 04</span>
+            <h3>MARS</h3>
+            <p>The red frontier</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- BIG STAT -->
+    <section class="big-stat">
+
+      <div class="big-stat-orbit"></div>
+
+      <span>THE COSMOS</span>
+
+      <h2>
+        93 BILLION
+        <em>LIGHT YEARS.</em>
+      </h2>
+
+      <p>
+        That's the estimated diameter of the observable universe.
+        And we're only beginning to understand it.
+      </p>
+
+    </section>
+
+
+    <!-- MISSIONS -->
+    <section class="missions section" id="missions">
+
+      <div class="section-top">
+
+        <div>
+          <span class="section-number">02 / MISSIONS</span>
+
+          <h2>
+            HUMANS
+            <em>REACHING.</em>
+          </h2>
+        </div>
+
+        <p>
+          Every great discovery starts with a question.
+          These missions are pushing the limits of exploration.
+        </p>
+
+      </div>
+
+
+      <div class="mission-list">
+
+        <article class="mission">
+
+          <div class="mission-number">01</div>
+
+          <div class="mission-main">
+            <span>DEEP SPACE</span>
+            <h3>JAMES WEBB</h3>
+            <p>
+              Looking deeper into the universe than
+              humanity has ever seen.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+
+        <article class="mission">
+
+          <div class="mission-number">02</div>
+
+          <div class="mission-main">
+            <span>MARS EXPLORATION</span>
+            <h3>PERSEVERANCE</h3>
+            <p>
+              Searching for signs of ancient microbial life.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+
+        <article class="mission">
+
+          <div class="mission-number">03</div>
+
+          <div class="mission-main">
+            <span>OUTER SOLAR SYSTEM</span>
+            <h3>VOYAGER</h3>
+            <p>
+              Humanity's farthest journey into interstellar space.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+
+      <div class="about-visual">
+
+        <div class="about-core">
+          <span>∞</span>
+        </div>
+
+        <div class="about-orbit about-orbit-one"></div>
+        <div class="about-orbit about-orbit-two"></div>
+
+      </div>
+
+
+      <div class="about-copy">
+
+        <span class="section-number">03 / THE UNKNOWN</span>
+
+        <h2>
+          KEEP
+          <em>LOOKING UP.</em>
+        </h2>
+
+        <p>
+          The night sky isn't empty.
+          It's filled with stories, worlds and mysteries
+          waiting to be discovered.
+        </p>
+
+        <p>
+          NEBULA is an interactive visual experience
+          created to make the scale and beauty of space
+          feel a little closer.
+        </p>
+
+        <button class="primary-button" id="randomWorld">
+          RANDOM WORLD
+          <span>✦</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+
+      <div class="final-stars"></div>
+
+      <span class="section-number">THE JOURNEY CONTINUES</span>
+
+      <h2>
+        THERE IS
+        <em>MORE.</em>
+      </h2>
+
+      <button class="primary-button" id="backTop">
+        RETURN TO ORBIT
+        <span>↑</span>
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- WORLD MODAL -->
+  <div class="modal" id="worldModal">
+
+    <div class="modal-box">
+
+      <button class="modal-close" id="modalClose">×</button>
+
+      <div class="modal-planet" id="modalPlanet">
+        <div></div>
+      </div>
+
+      <div class="modal-content">
+
+        <span id="modalType">EXOPLANET</span>
+
+        <h2 id="modalTitle">KEPLER-186F</h2>
+
+        <p id="modalDescription">
+          A fascinating exoplanet orbiting within the habitable
+          zone of its star.
+        </p>
+
+        <div class="modal-stats">
+
+          <div>
+            <span>DISTANCE</span>
+            <strong id="modalDistance">500 LY</strong>
+          </div>
+
+          <div>
+            <span>TYPE</span>
+            <strong id="modalCategory">TERRESTRIAL</strong>
+          </div>
+
+          <div>
+            <span>STATUS</span>
+            <strong>OBSERVED</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VIDEO EXPERIENCE -->
+  <div class="experience" id="experience">
+
+    <button class="experience-close" id="experienceClose">
+      ×
+    </button>
+
+    <div class="experience-stars"></div>
+
+    <div class="experience-center">
+
+      <div class="experience-planet"></div>
+
+      <span>ENTERING DEEP SPACE</span>
+
+      <h2>
+        CLOSE YOUR EYES.
+        <em>IMAGINE.</em>
+      </h2>
+
+      <div class="experience-loader">
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    <div class="footer-brand">
+      <span class="brand-orbit"></span>
+      NEBULA
+    </div>
+
+    <p>
+      Designed beyond the known.
+    </p>
+
+    <span>
+      © 2026 NEBULA
+    </span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEBULA — Beyond The Known</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- LOADING -->
+  <div class="loader" id="loader">
+    <div class="loader-core"></div>
+    <div class="loader-text">INITIALIZING NEBULA</div>
+    <div class="loader-progress">
+      <span id="progress"></span>
+    </div>
+    <div class="loader-percent" id="percent">0%</div>
+  </div>
+
+
+  <!-- SPACE BACKGROUND -->
+  <canvas id="space"></canvas>
+
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+
+  <div class="cursor-glow"></div>
+
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+
+    <a href="#home" class="brand">
+      <span class="brand-orbit"></span>
+      NEBULA
+    </a>
+
+    <nav id="navLinks">
+      <a href="#home" class="active">HOME</a>
+      <a href="#explore">EXPLORE</a>
+      <a href="#missions">MISSIONS</a>
+      <a href="#about">ABOUT</a>
+    </nav>
+
+    <button class="nav-explore" id="launchBtn">
+      <span></span>
+      ENTER SPACE
+    </button>
+
+    <button class="hamburger" id="hamburger">
+      ☰
+    </button>
+
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="hero-copy">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          SYSTEM ONLINE
+        </div>
+
+        <p class="hero-kicker">
+          THE UNIVERSE IS BIGGER THAN YOU THINK
+        </p>
+
+        <h1>
+          BEYOND
+          <span>THE KNOWN.</span>
+        </h1>
+
+        <p class="hero-description">
+          Explore distant worlds, ancient stars and mysterious
+          galaxies through an interactive journey beyond the edge
+          of human imagination.
+        </p>
+
+        <div class="hero-actions">
+
+          <button class="primary-button" id="exploreButton">
+            BEGIN EXPLORATION
+            <span>↗</span>
+          </button>
+
+          <button class="play-button" id="playButton">
+            <span class="play-icon">▶</span>
+            WATCH EXPERIENCE
+          </button>
+
+        </div>
+
+        <div class="hero-data">
+
+          <div>
+            <strong>13.8B</strong>
+            <span>YEARS OLD</span>
+          </div>
+
+          <div>
+            <strong>2T+</strong>
+            <span>GALAXIES</span>
+          </div>
+
+          <div>
+            <strong>∞</strong>
+            <span>POSSIBILITIES</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PLANET -->
+      <div class="hero-universe">
+
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="orbit orbit-c"></div>
+
+        <div class="planet-shadow"></div>
+
+        <div class="planet">
+
+          <div class="planet-surface"></div>
+
+          <div class="planet-cloud cloud-one"></div>
+          <div class="planet-cloud cloud-two"></div>
+          <div class="planet-cloud cloud-three"></div>
+
+          <div class="planet-light"></div>
+
+        </div>
+
+        <div class="moon">
+          <div class="moon-surface"></div>
+        </div>
+
+        <div class="planet-label">
+          <span>EXOPLANET</span>
+          <strong>KEPLER-186F</strong>
+          <small>500 LIGHT YEARS AWAY</small>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator">
+        <span></span>
+        SCROLL TO EXPLORE
+      </div>
+
+    </section>
+
+
+    <!-- MARQUEE -->
+    <div class="space-marquee">
+
+      <div class="marquee-track">
+        <span>GALAXIES</span>
+        <i>✦</i>
+        <span>EXOPLANETS</span>
+        <i>✦</i>
+        <span>BLACK HOLES</span>
+        <i>✦</i>
+        <span>SUPERNOVAS</span>
+        <i>✦</i>
+        <span>NEBULAS</span>
+        <i>✦</i>
+
+        <span>GALAXIES</span>
+        <i>✦</i>
+        <span>EXOPLANETS</span>
+        <i>✦</i>
+        <span>BLACK HOLES</span>
+        <i>✦</i>
+        <span>SUPERNOVAS</span>
+        <i>✦</i>
+        <span>NEBULAS</span>
+      </div>
+
+    </div>
+
+
+    <!-- EXPLORE -->
+    <section class="explore section" id="explore">
+
+      <div class="section-top">
+
+        <div>
+          <span class="section-number">01 / DISCOVER</span>
+
+          <h2>
+            WORLDS
+            <em>UNKNOWN.</em>
+          </h2>
+        </div>
+
+        <p>
+          Our universe contains more worlds than humanity
+          could ever visit. Here are a few of the most
+          extraordinary.
+        </p>
+
+      </div>
+
+
+      <div class="planet-grid">
+
+        <article class="world-card active-world" data-world="kepler">
+
+          <div class="world-visual kepler">
+            <div class="mini-planet"></div>
+            <div class="mini-ring"></div>
+          </div>
+
+          <div class="world-info">
+            <span>EXOPLANET 01</span>
+            <h3>KEPLER-186F</h3>
+            <p>Potentially habitable world</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="jupiter">
+
+          <div class="world-visual jupiter">
+            <div class="mini-planet"></div>
+          </div>
+
+          <div class="world-info">
+            <span>GAS GIANT 02</span>
+            <h3>JUPITER</h3>
+            <p>The king of our solar system</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="saturn">
+
+          <div class="world-visual saturn">
+            <div class="mini-planet"></div>
+            <div class="saturn-ring"></div>
+          </div>
+
+          <div class="world-info">
+            <span>GAS GIANT 03</span>
+            <h3>SATURN</h3>
+            <p>World of magnificent rings</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="mars">
+
+          <div class="world-visual mars">
+            <div class="mini-planet"></div>
+          </div>
+
+          <div class="world-info">
+            <span>TERRESTRIAL 04</span>
+            <h3>MARS</h3>
+            <p>The red frontier</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- BIG STAT -->
+    <section class="big-stat">
+
+      <div class="big-stat-orbit"></div>
+
+      <span>THE COSMOS</span>
+
+      <h2>
+        93 BILLION
+        <em>LIGHT YEARS.</em>
+      </h2>
+
+      <p>
+        That's the estimated diameter of the observable universe.
+        And we're only beginning to understand it.
+      </p>
+
+    </section>
+
+
+    <!-- MISSIONS -->
+    <section class="missions section" id="missions">
+
+      <div class="section-top">
+
+        <div>
+          <span class="section-number">02 / MISSIONS</span>
+
+          <h2>
+            HUMANS
+            <em>REACHING.</em>
+          </h2>
+        </div>
+
+        <p>
+          Every great discovery starts with a question.
+          These missions are pushing the limits of exploration.
+        </p>
+
+      </div>
+
+
+      <div class="mission-list">
+
+        <article class="mission">
+
+          <div class="mission-number">01</div>
+
+          <div class="mission-main">
+            <span>DEEP SPACE</span>
+            <h3>JAMES WEBB</h3>
+            <p>
+              Looking deeper into the universe than
+              humanity has ever seen.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+
+        <article class="mission">
+
+          <div class="mission-number">02</div>
+
+          <div class="mission-main">
+            <span>MARS EXPLORATION</span>
+            <h3>PERSEVERANCE</h3>
+            <p>
+              Searching for signs of ancient microbial life.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+
+        <article class="mission">
+
+          <div class="mission-number">03</div>
+
+          <div class="mission-main">
+            <span>OUTER SOLAR SYSTEM</span>
+            <h3>VOYAGER</h3>
+            <p>
+              Humanity's farthest journey into interstellar space.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+
+      <div class="about-visual">
+
+        <div class="about-core">
+          <span>∞</span>
+        </div>
+
+        <div class="about-orbit about-orbit-one"></div>
+        <div class="about-orbit about-orbit-two"></div>
+
+      </div>
+
+
+      <div class="about-copy">
+
+        <span class="section-number">03 / THE UNKNOWN</span>
+
+        <h2>
+          KEEP
+          <em>LOOKING UP.</em>
+        </h2>
+
+        <p>
+          The night sky isn't empty.
+          It's filled with stories, worlds and mysteries
+          waiting to be discovered.
+        </p>
+
+        <p>
+          NEBULA is an interactive visual experience
+          created to make the scale and beauty of space
+          feel a little closer.
+        </p>
+
+        <button class="primary-button" id="randomWorld">
+          RANDOM WORLD
+          <span>✦</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+
+      <div class="final-stars"></div>
+
+      <span class="section-number">THE JOURNEY CONTINUES</span>
+
+      <h2>
+        THERE IS
+        <em>MORE.</em>
+      </h2>
+
+      <button class="primary-button" id="backTop">
+        RETURN TO ORBIT
+        <span>↑</span>
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- WORLD MODAL -->
+  <div class="modal" id="worldModal">
+
+    <div class="modal-box">
+
+      <button class="modal-close" id="modalClose">×</button>
+
+      <div class="modal-planet" id="modalPlanet">
+        <div></div>
+      </div>
+
+      <div class="modal-content">
+
+        <span id="modalType">EXOPLANET</span>
+
+        <h2 id="modalTitle">KEPLER-186F</h2>
+
+        <p id="modalDescription">
+          A fascinating exoplanet orbiting within the habitable
+          zone of its star.
+        </p>
+
+        <div class="modal-stats">
+
+          <div>
+            <span>DISTANCE</span>
+            <strong id="modalDistance">500 LY</strong>
+          </div>
+
+          <div>
+            <span>TYPE</span>
+            <strong id="modalCategory">TERRESTRIAL</strong>
+          </div>
+
+          <div>
+            <span>STATUS</span>
+            <strong>OBSERVED</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VIDEO EXPERIENCE -->
+  <div class="experience" id="experience">
+
+    <button class="experience-close" id="experienceClose">
+      ×
+    </button>
+
+    <div class="experience-stars"></div>
+
+    <div class="experience-center">
+
+      <div class="experience-planet"></div>
+
+      <span>ENTERING DEEP SPACE</span>
+
+      <h2>
+        CLOSE YOUR EYES.
+        <em>IMAGINE.</em>
+      </h2>
+
+      <div class="experience-loader">
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    <div class="footer-brand">
+      <span class="brand-orbit"></span>
+      NEBULA
+    </div>
+
+    <p>
+      Designed beyond the known.
+    </p>
+
+    <span>
+      © 2026 NEBULA
+    </span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>NEBULA — Beyond The Known</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- LOADING -->
+  <div class="loader" id="loader">
+    <div class="loader-core"></div>
+    <div class="loader-text">INITIALIZING NEBULA</div>
+    <div class="loader-progress">
+      <span id="progress"></span>
+    </div>
+    <div class="loader-percent" id="percent">0%</div>
+  </div>
+
+
+  <!-- SPACE BACKGROUND -->
+  <canvas id="space"></canvas>
+
+  <div class="aurora aurora-one"></div>
+  <div class="aurora aurora-two"></div>
+
+  <div class="cursor-glow"></div>
+
+
+  <!-- NAVIGATION -->
+  <header class="nav">
+
+    <a href="#home" class="brand">
+      <span class="brand-orbit"></span>
+      NEBULA
+    </a>
+
+    <nav id="navLinks">
+      <a href="#home" class="active">HOME</a>
+      <a href="#explore">EXPLORE</a>
+      <a href="#missions">MISSIONS</a>
+      <a href="#about">ABOUT</a>
+    </nav>
+
+    <button class="nav-explore" id="launchBtn">
+      <span></span>
+      ENTER SPACE
+    </button>
+
+    <button class="hamburger" id="hamburger">
+      ☰
+    </button>
+
+  </header>
+
+
+  <!-- HERO -->
+  <main>
+
+    <section class="hero" id="home">
+
+      <div class="hero-copy">
+
+        <div class="status">
+          <span class="status-dot"></span>
+          SYSTEM ONLINE
+        </div>
+
+        <p class="hero-kicker">
+          THE UNIVERSE IS BIGGER THAN YOU THINK
+        </p>
+
+        <h1>
+          BEYOND
+          <span>THE KNOWN.</span>
+        </h1>
+
+        <p class="hero-description">
+          Explore distant worlds, ancient stars and mysterious
+          galaxies through an interactive journey beyond the edge
+          of human imagination.
+        </p>
+
+        <div class="hero-actions">
+
+          <button class="primary-button" id="exploreButton">
+            BEGIN EXPLORATION
+            <span>↗</span>
+          </button>
+
+          <button class="play-button" id="playButton">
+            <span class="play-icon">▶</span>
+            WATCH EXPERIENCE
+          </button>
+
+        </div>
+
+        <div class="hero-data">
+
+          <div>
+            <strong>13.8B</strong>
+            <span>YEARS OLD</span>
+          </div>
+
+          <div>
+            <strong>2T+</strong>
+            <span>GALAXIES</span>
+          </div>
+
+          <div>
+            <strong>∞</strong>
+            <span>POSSIBILITIES</span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PLANET -->
+      <div class="hero-universe">
+
+        <div class="orbit orbit-a"></div>
+        <div class="orbit orbit-b"></div>
+        <div class="orbit orbit-c"></div>
+
+        <div class="planet-shadow"></div>
+
+        <div class="planet">
+
+          <div class="planet-surface"></div>
+
+          <div class="planet-cloud cloud-one"></div>
+          <div class="planet-cloud cloud-two"></div>
+          <div class="planet-cloud cloud-three"></div>
+
+          <div class="planet-light"></div>
+
+        </div>
+
+        <div class="moon">
+          <div class="moon-surface"></div>
+        </div>
+
+        <div class="planet-label">
+          <span>EXOPLANET</span>
+          <strong>KEPLER-186F</strong>
+          <small>500 LIGHT YEARS AWAY</small>
+        </div>
+
+      </div>
+
+      <div class="scroll-indicator">
+        <span></span>
+        SCROLL TO EXPLORE
+      </div>
+
+    </section>
+
+
+    <!-- MARQUEE -->
+    <div class="space-marquee">
+
+      <div class="marquee-track">
+        <span>GALAXIES</span>
+        <i>✦</i>
+        <span>EXOPLANETS</span>
+        <i>✦</i>
+        <span>BLACK HOLES</span>
+        <i>✦</i>
+        <span>SUPERNOVAS</span>
+        <i>✦</i>
+        <span>NEBULAS</span>
+        <i>✦</i>
+
+        <span>GALAXIES</span>
+        <i>✦</i>
+        <span>EXOPLANETS</span>
+        <i>✦</i>
+        <span>BLACK HOLES</span>
+        <i>✦</i>
+        <span>SUPERNOVAS</span>
+        <i>✦</i>
+        <span>NEBULAS</span>
+      </div>
+
+    </div>
+
+
+    <!-- EXPLORE -->
+    <section class="explore section" id="explore">
+
+      <div class="section-top">
+
+        <div>
+          <span class="section-number">01 / DISCOVER</span>
+
+          <h2>
+            WORLDS
+            <em>UNKNOWN.</em>
+          </h2>
+        </div>
+
+        <p>
+          Our universe contains more worlds than humanity
+          could ever visit. Here are a few of the most
+          extraordinary.
+        </p>
+
+      </div>
+
+
+      <div class="planet-grid">
+
+        <article class="world-card active-world" data-world="kepler">
+
+          <div class="world-visual kepler">
+            <div class="mini-planet"></div>
+            <div class="mini-ring"></div>
+          </div>
+
+          <div class="world-info">
+            <span>EXOPLANET 01</span>
+            <h3>KEPLER-186F</h3>
+            <p>Potentially habitable world</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="jupiter">
+
+          <div class="world-visual jupiter">
+            <div class="mini-planet"></div>
+          </div>
+
+          <div class="world-info">
+            <span>GAS GIANT 02</span>
+            <h3>JUPITER</h3>
+            <p>The king of our solar system</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="saturn">
+
+          <div class="world-visual saturn">
+            <div class="mini-planet"></div>
+            <div class="saturn-ring"></div>
+          </div>
+
+          <div class="world-info">
+            <span>GAS GIANT 03</span>
+            <h3>SATURN</h3>
+            <p>World of magnificent rings</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+
+        <article class="world-card" data-world="mars">
+
+          <div class="world-visual mars">
+            <div class="mini-planet"></div>
+          </div>
+
+          <div class="world-info">
+            <span>TERRESTRIAL 04</span>
+            <h3>MARS</h3>
+            <p>The red frontier</p>
+
+            <button class="world-button">
+              DISCOVER →
+            </button>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- BIG STAT -->
+    <section class="big-stat">
+
+      <div class="big-stat-orbit"></div>
+
+      <span>THE COSMOS</span>
+
+      <h2>
+        93 BILLION
+        <em>LIGHT YEARS.</em>
+      </h2>
+
+      <p>
+        That's the estimated diameter of the observable universe.
+        And we're only beginning to understand it.
+      </p>
+
+    </section>
+
+
+    <!-- MISSIONS -->
+    <section class="missions section" id="missions">
+
+      <div class="section-top">
+
+        <div>
+          <span class="section-number">02 / MISSIONS</span>
+
+          <h2>
+            HUMANS
+            <em>REACHING.</em>
+          </h2>
+        </div>
+
+        <p>
+          Every great discovery starts with a question.
+          These missions are pushing the limits of exploration.
+        </p>
+
+      </div>
+
+
+      <div class="mission-list">
+
+        <article class="mission">
+
+          <div class="mission-number">01</div>
+
+          <div class="mission-main">
+            <span>DEEP SPACE</span>
+            <h3>JAMES WEBB</h3>
+            <p>
+              Looking deeper into the universe than
+              humanity has ever seen.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+
+        <article class="mission">
+
+          <div class="mission-number">02</div>
+
+          <div class="mission-main">
+            <span>MARS EXPLORATION</span>
+            <h3>PERSEVERANCE</h3>
+            <p>
+              Searching for signs of ancient microbial life.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+
+        <article class="mission">
+
+          <div class="mission-number">03</div>
+
+          <div class="mission-main">
+            <span>OUTER SOLAR SYSTEM</span>
+            <h3>VOYAGER</h3>
+            <p>
+              Humanity's farthest journey into interstellar space.
+            </p>
+          </div>
+
+          <div class="mission-status">
+            <span class="live-dot"></span>
+            ACTIVE
+          </div>
+
+          <span class="mission-arrow">↗</span>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section class="about section" id="about">
+
+      <div class="about-visual">
+
+        <div class="about-core">
+          <span>∞</span>
+        </div>
+
+        <div class="about-orbit about-orbit-one"></div>
+        <div class="about-orbit about-orbit-two"></div>
+
+      </div>
+
+
+      <div class="about-copy">
+
+        <span class="section-number">03 / THE UNKNOWN</span>
+
+        <h2>
+          KEEP
+          <em>LOOKING UP.</em>
+        </h2>
+
+        <p>
+          The night sky isn't empty.
+          It's filled with stories, worlds and mysteries
+          waiting to be discovered.
+        </p>
+
+        <p>
+          NEBULA is an interactive visual experience
+          created to make the scale and beauty of space
+          feel a little closer.
+        </p>
+
+        <button class="primary-button" id="randomWorld">
+          RANDOM WORLD
+          <span>✦</span>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+
+      <div class="final-stars"></div>
+
+      <span class="section-number">THE JOURNEY CONTINUES</span>
+
+      <h2>
+        THERE IS
+        <em>MORE.</em>
+      </h2>
+
+      <button class="primary-button" id="backTop">
+        RETURN TO ORBIT
+        <span>↑</span>
+      </button>
+
+    </section>
+
+  </main>
+
+
+  <!-- WORLD MODAL -->
+  <div class="modal" id="worldModal">
+
+    <div class="modal-box">
+
+      <button class="modal-close" id="modalClose">×</button>
+
+      <div class="modal-planet" id="modalPlanet">
+        <div></div>
+      </div>
+
+      <div class="modal-content">
+
+        <span id="modalType">EXOPLANET</span>
+
+        <h2 id="modalTitle">KEPLER-186F</h2>
+
+        <p id="modalDescription">
+          A fascinating exoplanet orbiting within the habitable
+          zone of its star.
+        </p>
+
+        <div class="modal-stats">
+
+          <div>
+            <span>DISTANCE</span>
+            <strong id="modalDistance">500 LY</strong>
+          </div>
+
+          <div>
+            <span>TYPE</span>
+            <strong id="modalCategory">TERRESTRIAL</strong>
+          </div>
+
+          <div>
+            <span>STATUS</span>
+            <strong>OBSERVED</strong>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- VIDEO EXPERIENCE -->
+  <div class="experience" id="experience">
+
+    <button class="experience-close" id="experienceClose">
+      ×
+    </button>
+
+    <div class="experience-stars"></div>
+
+    <div class="experience-center">
+
+      <div class="experience-planet"></div>
+
+      <span>ENTERING DEEP SPACE</span>
+
+      <h2>
+        CLOSE YOUR EYES.
+        <em>IMAGINE.</em>
+      </h2>
+
+      <div class="experience-loader">
+        <span></span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <footer>
+
+    <div class="footer-brand">
+      <span class="brand-orbit"></span>
+      NEBULA
+    </div>
+
+    <p>
+      Designed beyond the known.
+    </p>
+
+    <span>
+      © 2026 NEBULA
+    </span>
+
+  </footer>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
